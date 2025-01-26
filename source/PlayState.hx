@@ -10,6 +10,7 @@ import flixel.util.FlxColor;
 class PlayState extends FlxState
 {
 	public static var SCORE:Int = 0;
+	var score_text:FlxText = new FlxText(0, 0, 0, "Score: 0", 16);
 
 	var player:FlxSprite = new FlxSprite(0, 0).makeGraphic(32, 32, FlxColor.LIME);
 	var player_offscreen_padding:Float = 16;
@@ -37,6 +38,8 @@ class PlayState extends FlxState
 		weaponChargeText.setPosition(8, 8);
 		add(weaponChargeText);
 
+		add(score_text);
+
 		super.create();
 	}
 	var key_space:Bool;
@@ -47,6 +50,8 @@ class PlayState extends FlxState
 
 	override public function update(elapsed:Float)
 	{
+		score_text.text = "Score: " + SCORE;
+
 		key_space = FlxG.keys.justReleased.SPACE;
 		key_z = FlxG.keys.justReleased.Z;
 
