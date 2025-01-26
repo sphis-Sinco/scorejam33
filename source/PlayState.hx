@@ -29,6 +29,7 @@ class PlayState extends FlxState
 	{
 		add(bullet_group);
 		add(player);
+		add(enemies_group);
 
 		player.screenCenter(XY);
 		player.x -= player.width * 4;
