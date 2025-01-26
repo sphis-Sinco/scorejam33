@@ -12,7 +12,7 @@ class PlayState extends FlxState
 	public static var SCORE:Int = 0;
 	public static var HISCORE:Int = 0;
 	var score_text:FlxText = new FlxText(8, 16, 0, "Score: 0", 16);
-	var hiscore_text:FlxText = new FlxText(8, 24, 0, "Hi Score: 0", 16);
+	var hiscore_text:FlxText = new FlxText(8, 32, 0, "Hi Score: 0", 16);
 
 	var player:FlxSprite = new FlxSprite(0, 0).makeGraphic(32, 32, FlxColor.LIME);
 	var player_offscreen_padding:Float = 16;
