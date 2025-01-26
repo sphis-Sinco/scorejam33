@@ -23,7 +23,7 @@ class PlayState extends FlxState
 	var bullet_offscreen_addition:Float = 16;
 
 	var enemies_group:FlxTypedGroup<FlxSprite> = new FlxTypedGroup<FlxSprite>();
-	var enemy_offscreen_padding:Float = 16;
+	var enemy_offscreen_padding:Float = 40;
 
 	override public function create()
 	{
