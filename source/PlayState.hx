@@ -57,7 +57,7 @@ class PlayState extends FlxState
 	{
 		score_text.text = "SCORE: " + SCORE;
 		hiscore_text.text = "HIGH SCORE: " + HISCORE;
-		hiscore_text.color = (SCORE > HISCORE) ? FlxColor.LIME : 0xffffff;
+		score_text.color = (SCORE > HISCORE) ? FlxColor.LIME : 0xffffff;
 
 		key_space = FlxG.keys.justReleased.SPACE;
 		key_z = FlxG.keys.justReleased.Z;
