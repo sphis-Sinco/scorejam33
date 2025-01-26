@@ -51,7 +51,9 @@ class PlayState extends FlxState
 			var new_bullet:FlxSprite = new FlxSprite();
 			new_bullet.makeGraphic(24, 24, FlxColor.YELLOW);
 			new_bullet.setPosition(player.x, player.y);
+			new_bullet.ID = weapon_charge;
 			bullet_group.add(new_bullet);
+			weapon_charge = 0;
 		}
 
 		weaponChargeText.text = "CHARGE: " + weapon_charge;
