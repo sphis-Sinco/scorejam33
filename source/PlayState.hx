@@ -9,6 +9,8 @@ import flixel.util.FlxColor;
 
 class PlayState extends FlxState
 {
+	public static var SCORE:Int = 0;
+
 	var player:FlxSprite = new FlxSprite(0, 0).makeGraphic(32, 32, FlxColor.LIME);
 	var player_offscreen_padding:Float = 16;
 
@@ -19,6 +21,9 @@ class PlayState extends FlxState
 
 	var bullet_group:FlxTypedGroup<FlxSprite> = new FlxTypedGroup<FlxSprite>();
 	var bullet_offscreen_addition:Float = 16;
+
+	var enemies_group:FlxTypedGroup<FlxSprite> = new FlxTypedGroup<FlxSprite>();
+	var enemy_offscreen_padding:Float = 16;
 
 	override public function create()
 	{
@@ -90,6 +95,53 @@ class PlayState extends FlxState
 				}
 			}
 			catch (e) {}
+		}
+
+		if (FlxG.random.int(0, 20) == 10)
+		{
+			var new_enemy:FlxSprite = new FlxSprite();
+
+			new_enemy.makeGraphic(40, 40, FlxColor.RED);
+
+			new_enemy.setPosition(FlxG.width + new_enemy.width * 2, player.y + FlxG.random.float(-60, 60));
+			if (new_enemy.y < 0 + enemy_offscreen_padding)
+				new_enemy.y = 0 + enemy_offscreen_padding;
+			if (new_enemy.y > FlxG.height - new_enemy.height - enemy_offscreen_padding)
+				new_enemy.y = FlxG.height - new_enemy.height - enemy_offscreen_padding;
+
+			enemies_group.add(new_enemy);
+		}
+
+		for (enemy in enemies_group.members)
+		{
+			try
+			{
+				enemy.x -= enemy.width / 6;
+
+				if (enemy.x < 0 - enemy.width * 2)
+				{
+					enemy.destroy();
+					enemies_group.members.remove(enemy);
+				}
+				for (bullet in bullet_group.members)
+				{
+					if (enemy.overlaps(bullet))
+					{
+						SCORE += 100 * bullet.ID;
+
+						enemy.destroy();
+						enemies_group.members.remove(enemy);
+						bullet.destroy();
+						bullet_group.members.remove(bullet);
+					}
+				}
+				if (enemy.overlaps(player))
+					trace('DIE DIE DIE DIE DIE HE SHOULD DIE');
+			}
+			catch (e)
+			{
+				trace(e);
+			}
 		}
 
 		super.update(elapsed);
