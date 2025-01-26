@@ -10,7 +10,9 @@ import flixel.util.FlxColor;
 class PlayState extends FlxState
 {
 	public static var SCORE:Int = 0;
+	public static var HISCORE:Int = 0;
 	var score_text:FlxText = new FlxText(8, 16, 0, "Score: 0", 16);
+	var hiscore_text:FlxText = new FlxText(8, 24, 0, "Hi Score: 0", 16);
 
 	var player:FlxSprite = new FlxSprite(0, 0).makeGraphic(32, 32, FlxColor.LIME);
 	var player_offscreen_padding:Float = 16;
@@ -28,6 +30,8 @@ class PlayState extends FlxState
 
 	override public function create()
 	{
+		HISCORE = FlxG.save.data.hiscore;
+
 		add(bullet_group);
 		add(player);
 		add(enemies_group);
@@ -39,6 +43,7 @@ class PlayState extends FlxState
 		add(weaponChargeText);
 
 		add(score_text);
+		add(hiscore_text);
 
 		super.create();
 	}
@@ -51,6 +56,8 @@ class PlayState extends FlxState
 	override public function update(elapsed:Float)
 	{
 		score_text.text = "SCORE: " + SCORE;
+		hiscore_text.text = "HIGH SCORE: " + HISCORE;
+		hiscore_text.color = (SCORE > HISCORE) ? FlxColor.LIME : 0xffffff;
 
 		key_space = FlxG.keys.justReleased.SPACE;
 		key_z = FlxG.keys.justReleased.Z;

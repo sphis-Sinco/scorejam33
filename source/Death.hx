@@ -11,12 +11,15 @@ class Death extends FlxState
 	{
 		super.create();
 
-		var ded:FlxText = new FlxText(0, 0, 0, "You ded died.");
+		FlxG.save.data.hiscore = (PlayState.SCORE > PlayState.HISCORE) ? PlayState.SCORE : PlayState.HISCORE;
+
+		var ded:FlxText = new FlxText(0, 0, 0, "You ded died at " + FlxG.save.data.hiscore);
 		add(ded);
 		ded.screenCenter();
 
 		var redo:FlxButton = new FlxButton(0, 0, "Retry", () ->
 		{
+			PlayState.SCORE = 0;
 			FlxG.switchState(new PlayState());
 		});
 		redo.screenCenter();
