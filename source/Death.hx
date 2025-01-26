@@ -20,7 +20,7 @@ class Death extends FlxState
 			FlxG.switchState(new PlayState());
 		});
 		redo.screenCenter();
-		redo.y -= ded.height + redo.height;
+		redo.y += ded.height + redo.height;
 		add(redo);
 	}
 }
