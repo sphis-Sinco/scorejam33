@@ -39,7 +39,7 @@ class PlayState extends FlxState
 		player.screenCenter(XY);
 		player.x -= player.width * 4;
 
-		weaponChargeText.setPosition(8, 8);
+		weaponChargeText.setPosition(8, 0);
 		add(weaponChargeText);
 
 		add(score_text);
