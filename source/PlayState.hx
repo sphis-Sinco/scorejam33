@@ -142,7 +142,7 @@ class PlayState extends FlxState
 					}
 				}
 				if (enemy.overlaps(player))
-					trace('DIE DIE DIE DIE DIE HE SHOULD DIE');
+					FlxG.switchState(new Death());
 			}
 			catch (e)
 			{
