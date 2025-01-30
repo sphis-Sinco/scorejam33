@@ -8,19 +8,26 @@ class Save
 
 	public static function updateValue(value:String, ?newvalue:Dynamic)
 	{
+		updateFlxGSaves();
+		
 		switch (value.toLowerCase())
 		{
 			case 'highscore', 'hiscore':
-				if (newvalue == Float)
+				try
 				{
 					HIGHSCORE = newvalue;
-					HIGHSCORE ??= 0;
-					FlxG.save.data.hiscore = HIGHSCORE;
 				}
-				else
+				catch (e)
 				{
-					throw 'newvalue should be Float for field: ${value.toLowerCase()}';
+					HIGHSCORE = (FlxG.save.data.hiscore > HIGHSCORE) ? FlxG.save.data.hiscore : 0;
+					throw 'newvalue should be Int for field: ${value.toLowerCase()}';
 				}
 		}
+		updateFlxGSaves();
+	}
+
+	private static function updateFlxGSaves()
+	{
+		FlxG.save.data.hiscore = HIGHSCORE;
 	}
 }
