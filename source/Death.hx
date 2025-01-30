@@ -11,7 +11,7 @@ class Death extends FlxState
 	{
 		super.create();
 
-		FlxG.save.data.hiscore = (PlayState.SCORE > PlayState.HISCORE) ? PlayState.SCORE : PlayState.HISCORE;
+		Save.updateValue('highscore', (PlayState.SCORE > PlayState.HISCORE) ? PlayState.SCORE : PlayState.HISCORE);
 
 		var ded:FlxText = new FlxText(0, 0, 0, "You ded died at " + PlayState.SCORE, 32);
 		add(ded);

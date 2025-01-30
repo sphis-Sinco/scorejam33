@@ -30,7 +30,7 @@ class PlayState extends FlxState
 
 	override public function create()
 	{
-		HISCORE = FlxG.save.data.hiscore;
+		HISCORE = Save.HIGHSCORE;
 
 		add(bullet_group);
 		add(player);
